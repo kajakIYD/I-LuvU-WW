@@ -47,6 +47,14 @@ import java.util.stream.Stream;
 
 public class MainActivity extends AppCompatActivity {
 
+    ///|***************TODO*******************
+    //Drawing algorithm checking
+    //Directory for pictures choosing
+    //MMS Sending
+    //Text scaling depending on letter quantity
+    // New line sign in citations "\n" in .txt file does not work
+    //Something more romantic than just "change Image" on button label
+
 
     Context context;
     String pathToCitations = "/storage/emulated/0/Citations/Citations.txt";
@@ -187,6 +195,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private int setFontSize(String text)
+    {
+        int res=0;
+        res = (text.length()<100) ? 12 : 10;
+        return res;
+    }
 
     public void onChangeImageButtonClick(View v)
     {
@@ -202,7 +216,9 @@ public class MainActivity extends AppCompatActivity {
             imageView.setImageBitmap(bmp);
             randomNum = ThreadLocalRandom.current().nextInt(0, citationsCnt);
             TextView citation = (TextView) findViewById(R.id.citation);
-            citation.setText(citationsList.get(randomNum));
+            String drawnCitation = citationsList.get(randomNum);
+            citation.setText(drawnCitation);
+            citation.setTextSiz(setFontSize(drawnCitation));
         }
         catch(Exception ex)
         {
