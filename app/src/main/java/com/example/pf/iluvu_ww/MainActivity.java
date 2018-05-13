@@ -2,22 +2,36 @@ package com.example.pf.iluvu_ww;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
+import android.database.Cursor;
+import android.database.sqlite.SqliteWrapper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.Telephony;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.klinker.android.send_message.Message;
+import com.klinker.android.send_message.Settings;
+import com.klinker.android.send_message.Transaction;
+import com.klinker.android.send_message.Utils;
+
+import net.rdrei.android.dirchooser.DirectoryChooserActivity;
+import net.rdrei.android.dirchooser.DirectoryChooserConfig;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -35,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     Context context;
-    String pathToCitations = "/storage/emulated/0/WW_Files/Citations.txt";
+    String pathToCitations = "/storage/emulated/0/Citations/Citations.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,16 +61,55 @@ public class MainActivity extends AppCompatActivity {
 
         grantPermissions();
         retrieveCitations(pathToCitations);
+        listFilesForFolder(folder);
+        onChangeImageButtonClick(MainActivity.this.getCurrentFocus());
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        // Set up click handler for "Choose Directory" button
+//        findViewById(R.id.changeDirectoryButton)
+//                .setOnClickListener(new View.OnClickListener() {
+//
+//                    @Override
+//                    public void onClick(View v) {
+//                        final Intent chooserIntent = new Intent(
+//                                MainActivity.this,
+//                                DirectoryChooserActivity.class);
+//
+//                        final DirectoryChooserConfig config = DirectoryChooserConfig.builder()
+//                                .newDirectoryName("DirChooserSample")
+//                                .allowReadOnlyDirectory(true)
+//                                .allowNewDirectoryNameModification(true)
+//                                .build();
+//
+//                        chooserIntent.putExtra(
+//                                DirectoryChooserActivity.EXTRA_CONFIG,
+//                                config);
+//
+//                        startActivityForResult(chooserIntent, REQUEST_DIRECTORY);
+//                    }
+//                });
     }
+
+
+//    private static final int REQUEST_DIRECTORY = 0;
+//    private static final String TAG = "DirChooserSample";
+//    private TextView mDirectoryTextView;
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        if (requestCode == REQUEST_DIRECTORY) {
+////            Log.i(TAG, String.format("Return from DirChooser with result %d",
+////                    resultCode));
+//
+//            if (resultCode == DirectoryChooserActivity.RESULT_CODE_DIR_SELECTED) {
+//                mDirectoryTextView
+//                        .setText(data
+//                                .getStringExtra(DirectoryChooserActivity.RESULT_SELECTED_DIR));
+//            } else {
+//                mDirectoryTextView.setText("nothing selected");
+//            }
+//        }
+//    }
 
     private void grantPermissions()
     {
@@ -90,7 +143,8 @@ public class MainActivity extends AppCompatActivity {
     int filesCnt = 0;
     List<String> filesList = new LinkedList<String>();
     //Make it more ogolne
-    final File folder = new File("/storage/emulated/0/Pictures/");
+    private String pathToImages;
+    private File folder = new File("/storage/emulated/0/Pictures/");
 
     public void listFilesForFolder(final File folder) {
         try
@@ -134,11 +188,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     public void onChangeImageButtonClick(View v)
     {
         String pathToImg = Environment.getExternalStorageDirectory().toString();
-        listFilesForFolder(folder);
         TextView textView = (TextView) findViewById(R.id.textView);
         textView.setText(String.valueOf(filesCnt));
         Bitmap bmp;
@@ -161,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
         }
         finally
         {
-            filesCnt = 0;
+            //filesCnt = 0;
         }
 
     }
