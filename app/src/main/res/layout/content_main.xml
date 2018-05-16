@@ -24,13 +24,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onChangeImageButtonClick"
-        android:text="Change image"
+        android:text="Zobacz Coś miłego :)"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/citation"
-        app:layout_constraintVertical_bias="0.557" />
+        app:layout_constraintVertical_bias="0.9999" />
 
     <TextView
         android:id="@+id/textView"
@@ -43,12 +43,12 @@
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.313" />
+        app:layout_constraintVertical_bias="0.913" />
 
     <TextView
         android:id="@+id/citation"
-        android:layout_width="270dp"
-        android:layout_height="144dp"
+        android:layout_width="279dp"
+        android:layout_height="175dp"
         android:text="Hello Werka :) \n I love You *"
         android:textAlignment="center"
         android:textSize="18sp"

@@ -48,12 +48,13 @@ import java.util.stream.Stream;
 public class MainActivity extends AppCompatActivity {
 
     ///|***************TODO*******************
-    //Drawing algorithm checking
+    //Drawing algorithm checking -> maybe it is the reason for stopping the application sometimes?
     //Directory for pictures choosing
     //MMS Sending
-    //Text scaling depending on letter quantity
+    //DONE - Text scaling depending on letter quantity
     // New line sign in citations "\n" in .txt file does not work
-    //Something more romantic than just "change Image" on button label
+    //DONE - Something more romantic than just "change Image" on button label
+    //App icon -> see sample from ChooseDirectory how to achieve it
 
 
     Context context;
@@ -195,18 +196,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void replaceNewLines(String text)
+    {
+        //Implementation for method that allows to put newlines
+    }
+    
     private int setFontSize(String text)
     {
         int res=0;
-        res = (text.length()<100) ? 12 : 10;
+        res = (text.length()<200) ? 18 : 15;
         return res;
     }
 
     public void onChangeImageButtonClick(View v)
     {
-        String pathToImg = Environment.getExternalStorageDirectory().toString();
-        TextView textView = (TextView) findViewById(R.id.textView);
-        textView.setText(String.valueOf(filesCnt));
+//        TextView textView = (TextView) findViewById(R.id.textView);
+//        textView.setText(String.valueOf(filesCnt));
         Bitmap bmp;
         try
         {
@@ -218,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
             TextView citation = (TextView) findViewById(R.id.citation);
             String drawnCitation = citationsList.get(randomNum);
             citation.setText(drawnCitation);
-            citation.setTextSiz(setFontSize(drawnCitation));
+            citation.setTextSize(setFontSize(drawnCitation));
         }
         catch(Exception ex)
         {
