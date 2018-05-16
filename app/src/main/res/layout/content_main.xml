@@ -10,27 +10,38 @@
 
     <ImageView
         android:id="@+id/imageView"
+        android:src="@mipmap/ic_launcher_new"
         android:layout_width="333dp"
         android:layout_height="290dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.577"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@color/colorAccent"
         tools:layout_editor_absoluteY="0dp" />
 
+
+    <Button
+        android:id="@+id/sendSmsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send SMS"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.50"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/citation"
+        app:layout_constraintVertical_bias="0.9999" />
 
     <Button
         android:id="@+id/changeImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:onClick="onChangeImageButtonClick"
         android:text="Zobacz Coś miłego :)"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/sendSmsButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/citation"
-        app:layout_constraintVertical_bias="0.9999" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView"
@@ -49,7 +60,8 @@
         android:id="@+id/citation"
         android:layout_width="279dp"
         android:layout_height="175dp"
-        android:text="Hello Werka :) \n I love You *"
+        android:maxLines="20"
+        android:text="Hello Werka :) \nI love You *"
         android:textAlignment="center"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/changeImageButton"
