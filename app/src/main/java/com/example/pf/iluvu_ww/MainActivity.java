@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS =0 ;
-    final String phoneNo = "506835509";
+    final String phoneNo = "PUT_YOUR_NUMBER_HERE";
     String message = "Sample message";
     protected void sendSMSMessage()
     {
